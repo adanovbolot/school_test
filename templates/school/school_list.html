@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+                            <h1>Список школ</h1>
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+           <h1><a href="{% url 'student_detail' pk=post.pk %}">{{ post.name }}</a></h1>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}}
