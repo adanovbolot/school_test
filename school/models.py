@@ -4,18 +4,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
 
 
-class ClassStudent(models.Model):
-    class Meta:
-        verbose_name = 'Название класса'
-        verbose_name_plural = 'Название классов'
-
-    name_class = models.CharField('Название класса', max_length=100, help_text='например: A, B, Г, Д')
-    class_number = models.CharField('Выбор класса', choices=CLASS_SELECTION, max_length=100)
-
-    def __str__(self):
-        return f"класс: {self.class_number} имя класса: {self.name_class}"
-
-
 class Student(models.Model):
     class Meta:
         verbose_name = 'Ученик'
@@ -24,7 +12,7 @@ class Student(models.Model):
     surname = models.CharField('ФИО', max_length=100, help_text='введите ФИО')
     mail = models.EmailField('Email')
     date_of_birth = models.DateField('Дата рождения', help_text='формат: 00.00.0000')
-    class_student = models.ForeignKey(ClassStudent, verbose_name='Класс', on_delete=models.RESTRICT)
+    class_student = models.CharField('Класс', max_length=100, help_text='формат: 1-класс, группа-a, b, c')
     address = models.CharField('Адрес', max_length=100)
     sex = models.CharField('Пол', max_length=100, choices=SEX_CHOICE)
     photo = models.ImageField('Фото(необязательно)', upload_to='media/', blank=True, null=True)
@@ -44,11 +32,11 @@ class Teacher(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.PROTECT)
     phone_number = PhoneNumberField('номер телефона')
-    class_student = models.ForeignKey(ClassStudent, on_delete=models.RESTRICT, verbose_name='Класс')
+    class_school = models.CharField('Класс', max_length=100, help_text='формат: 1-класс, группа-a, b, c')
     item_name = models.CharField('Название предмета', choices=CHOICE_OF_SUBJECTS, max_length=100)
 
     def __str__(self):
-        return f"имя учителя: {self.user}классы учителей: {self.class_student}"
+        return f"имя учителя: {self.user}классы учителей"
 
 
 class ClassChoice(models.Model):
@@ -56,8 +44,8 @@ class ClassChoice(models.Model):
         verbose_name = 'Класс'
         verbose_name_plural = 'Классы'
 
-    name = models.ForeignKey(ClassStudent, on_delete=models.PROTECT)
-    teacher = models.ForeignKey(Teacher, on_delete=models.RESTRICT)
+    name = models.CharField('Название', max_length=100)
+    teacher = models.OneToOneField(Teacher, verbose_name='Учитель', on_delete=models.RESTRICT)
     student = models.ManyToManyField(Student, verbose_name='Ученики')
 
     def __str__(self):
@@ -79,5 +67,3 @@ class School(models.Model):
 
     def get_absolute_url(self):
         return f"/school/{self.slug}/"
-
-

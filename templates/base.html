@@ -10,15 +10,8 @@
         <span class="logo">Приборная доска</span>
         {% if request.user.is_authenticated %}
             <ul class="menu">
-                <li {% if section == "dashboard" %} class="selected"{% endif %}>
-                    <a href="{% url "dashboard" %}">мой кабинет</a>
-                </li>
-                <li {% if section == "images" %} class="selected"{% endif %}>
-                    <a href="#">фото</a>
-                </li>
-                <li {% if section == "people" %}class="selected"{% endif %}>
-                    <a href="#">Народ</a>
-                </li>
+                <li {% if section == 'главная страница' %} class="selected"{% endif %}>
+                    <a href="{% url 'school_list' %}">Список школ</a>
             </ul>
         {% endif %}
         <span>

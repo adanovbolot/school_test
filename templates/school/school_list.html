@@ -2,10 +2,10 @@
 
 {% block content %}
                             <h1>Список школ</h1>
-    {% for post in posts %}
+    {% for post in sch_list %}
         <div class="post">
             <div class="date">
-           <h1><a href="{% url 'student_detail' pk=post.pk %}">{{ post.name }}</a></h1>
+           <h1><a href="{% url 'school_detail' pk=post.pk %}">{{ post.name }}</a></h1>
             </div>
         </div>
     {% endfor %}

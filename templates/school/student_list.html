@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+                            <h1>список учеников</h1>
+        <div class="post">
+            <div class="date">
+                    {% for post in s_list %}
+                <h1><a href="{% url 'student_detail' pk=post.pk %}">{{ post.surname }}</a></h1>
+                <h4><a>{{ post.date_of_birth }}</a></h4>
+                    {% endfor %}
+            </div>
+        </div>
+
+{% endblock %}

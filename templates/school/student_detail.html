@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-                            <h1>список учеников</h1>
-        <div class="post">
-            <div class="date">
-                <h1><a> {{ student.surname }}</a></h1>
-            </div>
+    <div class="post">
+        <div class="date">
+            {% if user.is_authenticated %}
+                <h1><a>{{ student_detail.surname }}</a></h1>
+                <h2><a>{{ student_detail.mail }}</a></h2>
+                <h4><a>адрес - {{ student_detail.address }}</a></h4>
+                <h3><a>группа - {{ student_detail.class_student.name_class }}</a></h3>
+                            <h3><a>{{ student_detail.sex }}</a></h3>
+                <h3><a>класс - {{ student_detail.class_student.class_number }}</a></h3>
+                <h3><a>дата рождения {{ student_detail.date_of_birth }}</a></h3>
+            {% endif %}
         </div>
-
+    </div>
 {% endblock %}

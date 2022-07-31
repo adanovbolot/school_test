@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student, Teacher, ClassStudent, ClassChoice, School
+from .models import Student, Teacher, ClassChoice, School
 
 
 @admin.register(Student)
@@ -13,11 +13,6 @@ class TeacherAdmin(admin.ModelAdmin):
 
 
 @admin.register(ClassChoice)
-class ClassStudentAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(ClassStudent)
 class ClassStudentAdmin(admin.ModelAdmin):
     pass
 
