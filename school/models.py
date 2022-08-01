@@ -16,7 +16,7 @@ class Student(models.Model):
     address = models.CharField('Адрес', max_length=100)
     sex = models.CharField('Пол', max_length=100, choices=SEX_CHOICE)
     photo = models.ImageField('Фото(необязательно)', upload_to='media/', blank=True, null=True)
-    slug = models.SlugField(blank=True, unique=True)
+    slug = models.SlugField(blank=True)
 
     def __str__(self):
         return f"Имя ученика: {self.surname}\n Дата рождения: {self.date_of_birth} Класс: {self.class_student}"
@@ -57,10 +57,10 @@ class School(models.Model):
         verbose_name = 'Школа'
         verbose_name_plural = 'Школы'
 
-    name = models.CharField('Название школы', max_length=100, unique=True)
+    name = models.CharField('Название школы', max_length=100)
     class_students = models.ForeignKey(ClassChoice, verbose_name='класс', on_delete=models.RESTRICT, related_name='school_class')
     draft = models.BooleanField(default=False, verbose_name='Черновик')
-    slug = models.SlugField(blank=True, unique=True)
+    slug = models.SlugField(blank=True)
 
     def __str__(self):
         return f"название школы: {self.name}"

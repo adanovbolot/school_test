@@ -1,8 +1,10 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView
-from .models import Student, ClassChoice, School
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy, reverse
+from django.views.generic import CreateView, DeleteView, FormView
+from .models import Student, School
+from .forms import StudentForm, SchoolForm, StudentEmailForm
 from django.core.mail import BadHeaderError, send_mail
 
 
@@ -26,6 +28,36 @@ def student_detail(request, pk):
     return render(request, 'school/student_detail.html', {'student_detail': student_detail})
 
 
-# def data_detail(request, pk):
-#     data_detail = get_object_or_404(Student, pk=pk)
-#     return HttpResponse(request, 'school/student_detail.html', {'data_detail': data_detail})
+# class StudentCreateView(CreateView):
+#     template_name = 'school/create_student.html'
+#     form_class = StudentForm
+#     success_url = reverse_lazy('school_list')
+
+
+def send_message(request):
+    if request.method ==  "POST":
+        form = StudentEmailForm(request.POST)
+        if form.is_valid():
+            mail = send_mail(form.cleaned_data['surname'], form.cleaned_data['content'], form.cleaned_data['mail'], ['adanovbolot312@gmail.com'], fail_silently=False)
+            if mail:
+                messages.success(request, 'Письмо отправлено!')
+                return redirect('school_list')
+            else:
+                messages.error(request, 'Ошибка отправки!')
+        else:
+            messages.error(request, 'Ошибка регистрации')
+    else:
+        form = StudentEmailForm()
+    return render(request, 'school/create_student.html', {'form': form})
+
+# class StudentFormView(FormView):
+#     template_name = 'school/create_student.html'
+#     form_class = StudentForm
+#     success_url = '/thanks/'
+#     print('ok')
+
+
+class SchoolCreateView(CreateView):
+    template_name = 'school/create_school.html'
+    form_class = SchoolForm
+    success_url = reverse_lazy('school_list')

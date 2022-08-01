@@ -11,7 +11,12 @@
         {% if request.user.is_authenticated %}
             <ul class="menu">
                 <li {% if section == 'главная страница' %} class="selected"{% endif %}>
-                    <a href="{% url 'school_list' %}">Список школ</a>
+                </li><a href="{% url 'school_list' %}">Список школ</a>
+            </ul>
+
+          <ul class="menu">
+                <li {% if section == 'создать нового ученика' %} class="selected"{% endif %}>
+                    <a href="{% url 'add_school' %}">создать новую школу</a>
             </ul>
         {% endif %}
         <span>
