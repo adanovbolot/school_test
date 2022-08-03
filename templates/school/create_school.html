@@ -3,10 +3,12 @@
 {% block title %}Добавление школы{% endblock %}
 
 {% block content %}
+        {% if request.user.is_authenticated %}
 <h2>До6авление новой школы</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Добавить">
 </form>
+        {% endif %}
 {% endblock %}

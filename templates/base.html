@@ -10,13 +10,11 @@
         <span class="logo">Приборная доска</span>
         {% if request.user.is_authenticated %}
             <ul class="menu">
-                <li {% if section == 'главная страница' %} class="selected"{% endif %}>
                 </li><a href="{% url 'school_list' %}">Список школ</a>
             </ul>
-
-          <ul class="menu">
-                <li {% if section == 'создать нового ученика' %} class="selected"{% endif %}>
-                    <a href="{% url 'add_school' %}">создать новую школу</a>
+         <ul class="menu">
+             <li><a href="{% url 'add_student' %}">создать нового студента</a></li>
+              <li><a href="{% url 'add_school' %}">создать новую школу</a></li>
             </ul>
         {% endif %}
         <span>

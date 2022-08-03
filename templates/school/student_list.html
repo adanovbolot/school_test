@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<ul class="menu">
+            <form action="{% url 'search' %}" method="get">
+                <input type="search" type="text" name="q" placeholder="Поиск студентов">
+                <button type="submit">Найти</button>
+            </form>
+        </ul>
+
+        {% if request.user.is_authenticated %}
+
                             <h1>список учеников</h1>
         <div class="post">
             <div class="date">
@@ -10,5 +19,5 @@
                     {% endfor %}
             </div>
         </div>
-
+        {% endif %}
 {% endblock %}

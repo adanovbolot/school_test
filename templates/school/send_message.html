@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}Добавление нового ученика{% endblock %}
+{% block title %}Отправка SMS студенту{% endblock %}
 
 {% block content %}
         {% if request.user.is_authenticated %}
 <center>
 <h2>До6авление нового ученика</h2>
+  <h3>Отправка SMS студенту</h3>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="отправить" href="{% url 'send' %}">
-
+    <input type="submit" value="отправить">
 </form>
 </center>
         {% endif %}

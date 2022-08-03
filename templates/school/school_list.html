@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+        {% if request.user.is_authenticated %}
                             <h1>Список школ</h1>
     {% for post in sch_list %}
         <div class="post">
@@ -9,4 +10,5 @@
             </div>
         </div>
     {% endfor %}
+        {% endif %}
 {% endblock %}}

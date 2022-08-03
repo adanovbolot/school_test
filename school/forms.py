@@ -6,13 +6,13 @@ class StudentForm(forms.ModelForm):
 
     class Meta:
         model = Student
-        fields = ('surname', 'mail', 'date_of_birth', 'class_student', 'address', 'sex', 'photo')
+        fields = ('id', 'surname', 'mail', 'date_of_birth', 'class_student', 'address', 'sex', 'photo')
 
 
 class StudentEmailForm(forms.Form):
     surname = forms.CharField(label='ФИО', widget=forms.TextInput(attrs={'class': 'form-control'}))
     mail = forms.CharField(label='Майл', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    content = forms.CharField(label='Текст', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    content = forms.CharField(label='Текст', widget=forms.Textarea(attrs={'class': 'form-control'}))
 
 
 class StudentDeleteForm(forms.ModelForm):
