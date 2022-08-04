@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, FormView, ListView
+from django.views.generic import CreateView, ListView
 from .models import Student, School
 from .forms import StudentForm, SchoolForm, StudentEmailForm
 from django.core.mail import send_mail

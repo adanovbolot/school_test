@@ -1,7 +1,9 @@
 from django.db import models
+
+from users.models import CustomUser
 from .choices_class import SEX_CHOICE, CLASS_SELECTION, CHOICE_OF_SUBJECTS
 from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 
 
 class Student(models.Model):
@@ -30,8 +32,7 @@ class Teacher(models.Model):
         verbose_name = 'учитель'
         verbose_name_plural = 'учителя'
 
-    user = models.OneToOneField(User, on_delete=models.PROTECT)
-    phone_number = PhoneNumberField('номер телефона')
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
     class_school = models.CharField('Класс', max_length=100, help_text='формат: 1-класс, группа-a, b, c')
     item_name = models.CharField('Название предмета', choices=CHOICE_OF_SUBJECTS, max_length=100)
 

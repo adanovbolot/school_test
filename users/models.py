@@ -1,18 +1,16 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.utils.translation import gettext as _
-
-from school.models import Teacher
-from .manager import CustomUserManager
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class CustomUser(AbstractUser):
-    user = models.OneToOneField(Teacher, on_delete=models.PROTECT, verbose_name='пользоваель')
-    email = models.EmailField(_('email address'), unique=True)
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ('username',)
+    phone_number = PhoneNumberField('номер телефона', unique=True)
+    username = models.CharField('никнейм', max_length=100, unique=True)
+    date_of_birth = models.DateField('Дата рождения', help_text='формат: 00.00.0000', null=True, blank=True)
 
-    objects = CustomUserManager()
+    PHOME_FIELD = "phone_number"
+    USERNAME_FIELD = "phone_number"
+    REQUIRED_FIELDS = ["username"]
 
     def __str__(self):
-        return self.email
+        return str(self.phone_number)
