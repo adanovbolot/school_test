@@ -3,5 +3,10 @@
 {% block content %}
     <h1></h1>
     <p>добро пожаловать в понел учителя.</p>
-           <h1><a href="{% url 'teacher_create' %}">добавьте ваши данные</a></h1>
+<h2>создайте класс</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Добавить">
+</form>
 {% endblock %}

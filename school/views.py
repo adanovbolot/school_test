@@ -1,10 +1,15 @@
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
-from .models import Student, School
-from .forms import StudentForm, SchoolForm, StudentEmailForm
 from django.core.mail import send_mail
+from .models import Student, School, Teacher
+from .forms import StudentForm, SchoolForm, StudentEmailForm, ClassChoiceForm, TeacherForm
+from django.views.generic import CreateView, ListView
+
+
+def teacher_list(request):
+    teacher_list = Teacher.objects.all()
+    return render(request, 'school/personal_area.html', {'teacher_list': teacher_list})
 
 
 def school_list(request):
@@ -58,6 +63,18 @@ class SchoolCreateView(CreateView):
     success_url = reverse_lazy('school_list')
 
 
+class ClassChoiceFormCreate(CreateView):
+    template_name = 'school/create_class.html'
+    form_class = ClassChoiceForm
+    success_url = reverse_lazy('school_list')
+
+
+class TeacherFormCreate(CreateView):
+    template_name = 'school/create_teacher.html'
+    form_class = TeacherForm
+    success_url = reverse_lazy('school_list')
+
+
 class Search(ListView):
     template_name = 'school/student_list.html'
     context_object_name = 'sch_list'
@@ -70,4 +87,3 @@ class Search(ListView):
         context = super().get_context_data(**kwargs)
         context['q'] = self.request.GET.get('q')
         return context
-

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Добавление школы{% endblock %}
+
+{% block content %}
+        {% if request.user.is_authenticated %}
+            <h2>добавьте свои данные</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Добавить">
+            </form>
+        {% endif %}
+{% endblock %}

@@ -1,9 +1,6 @@
 from django.db import models
-
 from users.models import CustomUser
-from .choices_class import SEX_CHOICE, CLASS_SELECTION, CHOICE_OF_SUBJECTS
-from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.auth.models import User, AbstractUser
+from .choices_class import SEX_CHOICE, CHOICE_OF_SUBJECTS
 
 
 class Student(models.Model):

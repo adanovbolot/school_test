@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}добро пожаловать в личный кабинет{% endblock %}
+{% block content %}
+    <h1></h1>
+    <p>добро пожаловать в личный кабинет</p>
+    {% if request.user.is_authenticated %}
+        {% for post in teacher_list %}
+              <div class="post">
+                <div class="date">
+                    <h1>ваш номер телефона: <a>{{ post.user }}</a></h1>
+                    <h1>ваш класс: <a>{{ post.class_school }}</a></h1>
+                    <h1>вы учитель: <a>{{ post.item_name }}</a></h1>
+                </div>
+              </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

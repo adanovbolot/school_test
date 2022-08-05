@@ -9,5 +9,8 @@ urlpatterns = [
     path('add-student/', views.StudentCreateView.as_view(), name='add_student'),
     path('add-school/', views.SchoolCreateView.as_view(), name='add_school'),
     path('send', views.send_message, name='send'),
-    path('search/', views.Search.as_view(), name='search')
+    path('search/', views.Search.as_view(), name='search'),
+    path('class_choice/', views.ClassChoiceFormCreate.as_view(), name='class_sch'),
+    path('teacher_create', views.TeacherFormCreate.as_view(), name='teacher_create'),
+    path('personal_area/', views.teacher_list, name='teacher'),
 ]

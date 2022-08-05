@@ -1,5 +1,11 @@
 from django import forms
-from .models import Student, School
+from .models import Student, School, ClassChoice, Teacher
+
+
+class ClassChoiceForm(forms.ModelForm):
+    class Meta:
+        model = ClassChoice
+        fields = ('name', 'teacher', 'student')
 
 
 class StudentForm(forms.ModelForm):
@@ -25,3 +31,9 @@ class SchoolForm(forms.ModelForm):
     class Meta:
         model = School
         fields = ('name', 'class_students')
+
+
+class TeacherForm(forms.ModelForm):
+    class Meta:
+        model = Teacher
+        fields = ('user', 'class_school', 'item_name')
