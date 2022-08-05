@@ -16,15 +16,9 @@ class StudentForm(forms.ModelForm):
 
 
 class StudentEmailForm(forms.Form):
-    surname = forms.CharField(label='ФИО', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    type = forms.CharField(label='Тема', widget=forms.TextInput(attrs={'class': 'form-control'}))
     mail = forms.CharField(label='Майл', widget=forms.TextInput(attrs={'class': 'form-control'}))
     content = forms.CharField(label='Текст', widget=forms.Textarea(attrs={'class': 'form-control'}))
-
-
-class StudentDeleteForm(forms.ModelForm):
-    class Meta:
-        model = Student
-        fields = '__all__'
 
 
 class SchoolForm(forms.ModelForm):
@@ -36,4 +30,4 @@ class SchoolForm(forms.ModelForm):
 class TeacherForm(forms.ModelForm):
     class Meta:
         model = Teacher
-        fields = ('user', 'class_school', 'item_name')
+        fields = ('class_school', 'item_name')

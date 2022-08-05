@@ -13,4 +13,6 @@ urlpatterns = [
     path('class_choice/', views.ClassChoiceFormCreate.as_view(), name='class_sch'),
     path('teacher_create', views.TeacherFormCreate.as_view(), name='teacher_create'),
     path('personal_area/', views.teacher_list, name='teacher'),
+    path('student-delete/<int:pk>/', views.student_delete, name='delete'),
+    path('student-edit/<int:pk>/', views.student_edit, name='student_edit'),
 ]

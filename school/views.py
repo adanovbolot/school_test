@@ -1,3 +1,4 @@
+import datetime
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -32,6 +33,13 @@ def student_detail(request, pk):
     return render(request, 'school/student_detail.html', {'student_detail': student_detail})
 
 
+def student_delete(request, pk):
+    student = Student.objects.filter(id=pk)
+    student.delete()
+    messages.success(request, 'вы удалили студента')
+    return redirect('school_list')
+
+
 class StudentCreateView(CreateView):
     template_name = 'school/create_student.html'
     queryset = Student.objects.all()
@@ -43,11 +51,11 @@ def send_message(request):
     if request.method == "POST":
         form = StudentEmailForm(request.POST)
         if form.is_valid():
-            mail = send_mail(form.cleaned_data['surname'], form.cleaned_data['content'], form.cleaned_data['mail'],
+            mail = send_mail(form.cleaned_data['type'], form.cleaned_data['content'], form.cleaned_data['mail'],
                              ['adanovbolot312@gmail.com'], fail_silently=False)
             if mail:
                 messages.success(request, 'Письмо отправлено!')
-                return redirect('create_student')
+                return redirect('school_list')
             else:
                 messages.error(request, 'Ошибка отправки!')
         else:
@@ -87,3 +95,17 @@ class Search(ListView):
         context = super().get_context_data(**kwargs)
         context['q'] = self.request.GET.get('q')
         return context
+
+
+def student_edit(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+    if request.method == "POST":
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            student = form.save(commit=False)
+            student.author = request.user
+            student.save()
+            return redirect('/', pk=student.pk)
+    else:
+        form = StudentForm(instance=student)
+    return render(request, 'school/student_edit.html', {'form': form})

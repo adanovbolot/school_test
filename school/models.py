@@ -1,6 +1,8 @@
 from django.db import models
 from users.models import CustomUser
 from .choices_class import SEX_CHOICE, CHOICE_OF_SUBJECTS
+from django.db.models import signals
+from django.dispatch import receiver
 
 
 class Student(models.Model):
@@ -22,6 +24,17 @@ class Student(models.Model):
 
     def get_absolute_url(self):
         return f"/school/{self.slug}/"
+
+
+@receiver(signals.post_save, sender=Student)
+def create_student(sender, instance, created, **kwargs):
+    print('был создан новый студент')
+
+
+@receiver(signals.pre_save, sender=Student)
+def check_student_description(sender, instance, **kwargs):
+    if not instance.address:
+        instance.address = 'по умолчанию'
 
 
 class Teacher(models.Model):

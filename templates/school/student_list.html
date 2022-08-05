@@ -16,6 +16,9 @@
                     {% for post in s_list %}
                 <h1><a href="{% url 'student_detail' pk=post.pk %}">{{ post.surname }}</a></h1>
                 <h4><a>{{ post.date_of_birth }}</a></h4>
+                <a href="{% url 'delete' pk=post.pk %}" class="btn btn-danger badge">delete</a>
+                <a href="{% url 'student_edit' pk=post.pk %}">обновить</a>
+
                     {% endfor %}
             </div>
         </div>
