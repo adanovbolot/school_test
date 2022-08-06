@@ -2,6 +2,9 @@ import os
 from pathlib import Path
 import environ
 
+
+CORS_ALLOW_ALL_ORIGINS = True
+
 env = environ.Env()
 environ.Env.read_env()
 
@@ -60,17 +63,28 @@ TEMPLATES = [
 ]
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': env("DATABASE_NAME"),
+#         'USER': env("DATABASE_USER"),
+#         'PASSWORD': env("DATABASE_PASSWORD"),
+#         'HOST': env("DATABASE_HOST"),
+#         'PORT': env("DATABASE_PORT"),
+#     }
+# }
+
+#docker database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DATABASE_NAME"),
-        'USER': env("DATABASE_USER"),
-        'PASSWORD': env("DATABASE_PASSWORD"),
-        'HOST': env("DATABASE_HOST"),
-        'PORT': env("DATABASE_PORT"),
+        'NAME': 'root',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
-
 
 if DEBUG:
     AUTH_PASSWORD_VALIDATORS = []
