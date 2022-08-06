@@ -1,29 +1,12 @@
 docker на минимальных требованиях
 
-    
-    база данные для docker    
-    
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'root',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'db',
-        'PORT': '5432',
-    }
-}
-
 две команды для запуска
 
-    docker-compose build
-    docker-compose up
-    or
-    docker-compose up -d
+    sudo docker-compose -f docker-compose.dev.yml up -d
 
 стоп    
     
-    docker-compose stop
+    sudo docker-compose -f docker-compose.dev.yml stop
     
 
 создайте виртуальное окружение
@@ -33,6 +16,7 @@ docker на минимальных требованиях
 
     примечание: если не работает .env файл
     переместите его в main/.env
+    или там и там копию
 
     либо проверить нет ли между данными пробелы
 

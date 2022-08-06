@@ -1,0 +1,23 @@
+[0;1;32m●[0m docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: [0;1;32mactive (running)[0m since Sun 2022-08-07 00:04:06 +06; 37min ago
+TriggeredBy: [0;1;32m●[0m docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 1783 (dockerd)
+      Tasks: 25
+     Memory: 71.4M
+     CGroup: /system.slice/docker.service
+             ├─1783 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+             ├─4146 /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 5435 -container-ip 172.18.0.2 -container-port 5432
+             └─4153 /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 5435 -container-ip 172.18.0.2 -container-port 5432
+
+авг 07 00:08:52 adanov-HP-Laptop-15-db1xxx dockerd[1783]: time="2022-08-07T00:08:52.440958972+06:00" level=info msg="IPv6 enabled; Adding default IPv6 external servers: [nameserver 2001:4860:4860::8888 nameserver 2001:4860:4860::8844]"
+авг 07 00:08:52 adanov-HP-Laptop-15-db1xxx dockerd[1783]: time="2022-08-07T00:08:52.960394891+06:00" level=info msg="No non-localhost DNS nameservers are left in resolv.conf. Using default external servers: [nameserver 8.8.8.8 nameserver 8.8.4.4]"
+авг 07 00:08:52 adanov-HP-Laptop-15-db1xxx dockerd[1783]: time="2022-08-07T00:08:52.960429640+06:00" level=info msg="IPv6 enabled; Adding default IPv6 external servers: [nameserver 2001:4860:4860::8888 nameserver 2001:4860:4860::8844]"
+авг 07 00:09:08 adanov-HP-Laptop-15-db1xxx dockerd[1783]: time="2022-08-07T00:09:08.716183191+06:00" level=info msg="ignoring event" container=82e2652d9b8b6d6d9373ff5ee11be81d791f6e35cb57620d5be6af08752dd139 module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+авг 07 00:09:09 adanov-HP-Laptop-15-db1xxx dockerd[1783]: time="2022-08-07T00:09:09.290135206+06:00" level=info msg="ignoring event" container=3eecfb7cae32639cb6a9e5515354aa98e7aec097ea6c5097e195eda507958a62 module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+авг 07 00:09:17 adanov-HP-Laptop-15-db1xxx dockerd[1783]: time="2022-08-07T00:09:17.847053089+06:00" level=info msg="No non-localhost DNS nameservers are left in resolv.conf. Using default external servers: [nameserver 8.8.8.8 nameserver 8.8.4.4]"
+авг 07 00:09:17 adanov-HP-Laptop-15-db1xxx dockerd[1783]: time="2022-08-07T00:09:17.847084972+06:00" level=info msg="IPv6 enabled; Adding default IPv6 external servers: [nameserver 2001:4860:4860::8888 nameserver 2001:4860:4860::8844]"
+авг 07 00:09:18 adanov-HP-Laptop-15-db1xxx dockerd[1783]: time="2022-08-07T00:09:18.362459636+06:00" level=info msg="No non-localhost DNS nameservers are left in resolv.conf. Using default external servers: [nameserver 8.8.8.8 nameserver 8.8.4.4]"
+авг 07 00:09:18 adanov-HP-Laptop-15-db1xxx dockerd[1783]: time="2022-08-07T00:09:18.362508853+06:00" level=info msg="IPv6 enabled; Adding default IPv6 external servers: [nameserver 2001:4860:4860::8888 nameserver 2001:4860:4860::8844]"
+авг 07 00:32:40 adanov-HP-Laptop-15-db1xxx dockerd[1783]: time="2022-08-07T00:32:40.861279341+06:00" level=info msg="ignoring event" container=82e2652d9b8b6d6d9373ff5ee11be81d791f6e35cb57620d5be6af08752dd139 module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
