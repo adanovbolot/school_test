@@ -1,3 +1,31 @@
+docker на минимальных требованиях
+
+    
+    база данные для docker    
+    
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'root',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'db',
+        'PORT': '5432',
+    }
+}
+
+две команды для запуска
+
+    docker-compose build
+    docker-compose up
+    or
+    docker-compose up -d
+
+стоп    
+    
+    docker-compose stop
+    
+
 создайте виртуальное окружение
 
     python -m venv env
